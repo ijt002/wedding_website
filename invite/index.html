@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contact Form</title>
+    <title>RSVP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 </head>
 <body>
 
-<h2>Contact Us</h2>
+<h2>RSVP</h2>
 
-<form id="myForm" action="https://script.google.com/macros/s/AKfycbxNPc1XR5B3FbTM67dpKiPMVUyJP0pEF10sSgPkU_zVwh3ez4MpSfZiZK2eRw2wZTwmBg/exec" method="POST">
+<form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbxNPc1XR5B3FbTM67dpKiPMVUyJP0pEF10sSgPkU_zVwh3ez4MpSfZiZK2eRw2wZTwmBg/exec" method="POST">
 
     <input type="hidden" name="Secret" id="secretField">
     <label>Name:</label><br>
@@ -22,10 +23,10 @@
     <button type="submit" id="submitBtn">Submit</button>
 </form>
 
-<p id="successMessage" style="display:none; color:green;">Thank you! Your message has been saved.</p>
+<p id="successMessage" style="display:none; color:green;">Thank you for your response</p>
 
 <script>
-    const form = document.getElementById('myForm');
+    const form = document.getElementById('rsvpForm');
     const successMessage = document.getElementById('successMessage');
     const submitBtn = document.getElementById('submitBtn');
     // Automatically grab '?key=something' from the URL and put it in the form
@@ -42,13 +43,22 @@
 
         fetch(form.action, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                successMessage.style.display = 'block';
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = "Submit";
+                // 2. Check if Google actually saved the data
+                if (data.result === 'success') {
+                    successMessage.style.display = 'block';
+                    successMessage.style.color = 'green';
+                    successMessage.innerHTML = "Thank you for your response";
+                    form.reset();
+                } else {
+                    // 3. This handles the wrong secret password case
+                    alert('Submission Rejected: ' + data.error);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit";
+                }
             })
             .catch(error => {
-                alert('Error!', error.message);
+                // This handles network crashes (e.g., no internet)
+                alert('Network Error! ' + error.message);
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = "Submit";
             });
