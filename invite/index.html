@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+</head>
+<body>
+
+<h2>Contact Us</h2>
+
+<form id="myForm" action="https://script.google.com/macros/s/AKfycbxNPc1XR5B3FbTM67dpKiPMVUyJP0pEF10sSgPkU_zVwh3ez4MpSfZiZK2eRw2wZTwmBg/exec" method="POST">
+
+    <input type="hidden" name="Secret" id="secretField">
+    <label>Name:</label><br>
+    <input type="text" name="Name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="Email" required><br><br>
+
+    <label>Message:</label><br>
+    <textarea name="Message" required></textarea><br><br>
+
+    <button type="submit" id="submitBtn">Submit</button>
+</form>
+
+<p id="successMessage" style="display:none; color:green;">Thank you! Your message has been saved.</p>
+
+<script>
+    const form = document.getElementById('myForm');
+    const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    // Automatically grab '?key=something' from the URL and put it in the form
+    const urlParams = new URLSearchParams(window.location.search);
+    const secretKey = urlParams.get('key');
+    if (secretKey) {
+        document.getElementById('secretField').value = secretKey;
+    }
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "Sending...";
+
+        fetch(form.action, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                successMessage.style.display = 'block';
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Submit";
+            })
+            .catch(error => {
+                alert('Error!', error.message);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Submit";
+            });
+    });
+</script>
+
+</body>
+</html>
