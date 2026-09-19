@@ -1,65 +1,269 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="light">
 <head>
-    <title>RSVP</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+      --pico-font-family: 'Inria Serif', serif;
+      --pico-primary: #8b7e74;
+      --pico-primary-hover: #73675e;
+      --pico-border-radius: 6px;
+    }
+    h1, h2, h3 {
+        font-family: 'Inria Serif', serif;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+    }
+
+    body {
+        /* Replace with your image URL */
+        background-image: url('../media/IMG_9743.PNG');
+
+        /* Scale image proportionally to cover the screen */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        /* Fallback color while image loads */
+        background-color: #f7f5f0;
+
+        /* Ensure body fills full screen height */
+        min-height: 100vh;
+    }
+
+    /* Ensure the form card is easy to read over any image */
+    article {
+        max-width: 520px;
+        margin: 2rem auto;
+
+        /* Soft white overlay with subtle opacity */
+        background-color: rgba(255, 255, 255, 0.93);
+
+        /* Subtle border and shadow to lift it off the background */
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+        /* Soft rounded corners */
+        border-radius: 12px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .success-alert {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      border-radius: var(--pico-border-radius);
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    button[type="submit"] {
+        background-color: transparent;
+        color: #333333;
+        border: 1px solid #7a6e65;
+        font-family: 'Inria Serif', serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #7a6e65;
+        color: #ffffff;
+        border-color: #7a6e65;
+    }
+
+    #successMessage {
+        text-align: center;
+        font-family: 'Inria Serif', serif;
+        font-size: 1.25rem;
+        color: #2e7d32;
+        padding: 2rem 1rem;
+        margin: 0;
+    }
+  </style>
 </head>
 <body>
 
-<h2>RSVP</h2>
 
-<form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbxNPc1XR5B3FbTM67dpKiPMVUyJP0pEF10sSgPkU_zVwh3ez4MpSfZiZK2eRw2wZTwmBg/exec" method="POST">
+<main class="container">
+  <dialog id="keyModal">
+    <article>
+        <h2>Access Required</h2>
+        <p>Please enter the RSVP access code provided with your invitation:</p>
+        <p id="modalError" style="color: #c62828; display: none; font-size: 0.9rem;">
+          Incorrect access code. Please try again.
+        </p>
+        <form id="keyForm" method="dialog">
+        <label for="promptKeyInput">
+            Access Code
+            <input type="text" id="promptKeyInput" required>
+        </label>
+        <button type="submit">Submit Code</button>
+        </form>
+    </article>
+  </dialog>
+  <article>
+    <h2>Kindly Respond</h2>
 
-    <input type="hidden" name="Secret" id="secretField">
-    <label>Name:</label><br>
-    <input type="text" name="Name" required><br><br>
+    <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbxNPc1XR5B3FbTM67dpKiPMVUyJP0pEF10sSgPkU_zVwh3ez4MpSfZiZK2eRw2wZTwmBg/exec" method="POST">
+      <input type="hidden" name="Secret" id="secretField">
 
-    <label>Email:</label><br>
-    <input type="email" name="Email" required><br><br>
+      <!-- 1. Full Name -->
+        <label for="fullName">
+        Full Name
+        <input
+            type="text"
+            id="fullName"
+            name="Name"
+            placeholder="John Smith"
+            required
+        >
+        </label>
 
-    <label>Message:</label><br>
-    <textarea name="Message" required></textarea><br><br>
+        <!-- 2. Attendance Dropdown -->
+        <label for="attendance">
+        Attendance
+        <select id="attendance" name="Attendance" required>
+            <option value="" disabled selected>Select an option...</option>
+            <option value="Joyfully Accepts">Joyfully Accepts</option>
+            <option value="Regretfully Declines">Regretfully Declines</option>
+        </select>
+        </label>
 
-    <button type="submit" id="submitBtn">Submit</button>
-</form>
+        <!-- 3. Dietary Requirements (Optional) -->
+        <label for="diet">
+        Food Allergies & Dietary Requirements
+        <small style="display: block; color: #666666; font-size: 0.8rem; margin-top: -0.25rem; margin-bottom: 0.4rem;">
+            Please let us know of any allergies or dietary restrictions.
+        </small>
+        <textarea
+            id="diet"
+            name="diet"
+            placeholder="e.g. Vegetarian, nut allergy, gluten-free, or leave blank if none"
+            rows="2"
+        ></textarea>
+        </label>
 
-<p id="successMessage" style="display:none; color:green;">Thank you for your response</p>
+        <!-- 4. Song Request (Optional) -->
+        <label for="songRequest">
+        Song Request
+        <small style="display: block; color: #666666; font-size: 0.8rem; margin-top: -0.25rem; margin-bottom: 0.4rem;">
+            What song is guaranteed to get you on the dance floor?
+        </small>
+        <input
+            type="text"
+            id="songRequest"
+            name="SongRequest"
+            placeholder="Earth, Wind & Fire - September"
+            autocomplete="off"
+        >
+        </label>
+
+
+      <div id="formErrorMessage" style="display: none; background-color: #fde8e8; color: #9b1c1c; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem; text-align: center; font-size: 0.9rem;">
+        Unable to submit. Please check your connection and try again.
+      </div>
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    <p id="successMessage" style="display:none;" class="success-alert">
+      Thank you for your response!
+    </p>  </article>
+</main>
 
 <script>
     const form = document.getElementById('rsvpForm');
     const successMessage = document.getElementById('successMessage');
     const submitBtn = document.getElementById('submitBtn');
-    // Automatically grab '?key=something' from the URL and put it in the form
-    const urlParams = new URLSearchParams(window.location.search);
-    const secretKey = urlParams.get('key');
-    if (secretKey) {
-        document.getElementById('secretField').value = secretKey;
-    }
+    const secretField = document.getElementById('secretField');
+    const formErrorMessage = document.getElementById('formErrorMessage');
 
+    const keyModal = document.getElementById('keyModal');
+    const keyForm = document.getElementById('keyForm');
+    const promptKeyInput = document.getElementById('promptKeyInput');
+
+    // 1. Check URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlKey = urlParams.get('key');
+
+    // 2. Check if the URL parameter exists, or if a value is already restored in the hidden input
+    if (urlKey) {
+      secretField.value = urlKey.trim();
+    } else if (secretField.value && secretField.value.trim() !== "") {
+      // Key was already restored by browser memory/autofill on refresh
+      console.log("Secret key restored from existing form field.");
+    } else {
+      // 3. No key found anywhere -> open the Pico modal prompt
+      keyModal.showModal();
+    }
+    // Handle key submission from modal
+    keyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        secretField.value = promptKeyInput.value.trim();
+        keyModal.close();
+    });
     form.addEventListener('submit', e => {
+        formErrorMessage.style.display = 'none';
         e.preventDefault();
         submitBtn.disabled = true;
-        submitBtn.innerHTML = "Sending...";
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.innerHTML = "SENDING...";
 
         fetch(form.action, { method: 'POST', body: new FormData(form)})
+            .then(response => response.json())
             .then(data => {
+                submitBtn.removeAttribute('aria-busy');
                 // 2. Check if Google actually saved the data
                 if (data.result === 'success') {
+                    // Save current secret key before reset
+                    const currentSecret = secretField.value;
+
+                    // Clear inputs and show success message
+                    form.style.display = 'none';
                     successMessage.style.display = 'block';
-                    successMessage.style.color = 'green';
-                    successMessage.innerHTML = "Thank you for your response";
+                    successMessage.innerHTML = "Thank you! Your response has been received.";
+
+                    // Reset all user-entered fields
                     form.reset();
+
+                    // Restore secret key in case they submit another RSVP
+                    secretField.value = currentSecret;
                 } else {
-                    // 3. This handles the wrong secret password case
-                    alert('Submission Rejected: ' + data.error);
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = "Submit";
+                        // 3. INVALID KEY CASE: Clear bad values and prompt user again
+                        // Reset secret input and modal input fields
+                        secretField.value = '';
+                        promptKeyInput.value = '';
+                        if (modalError) modalError.style.display = 'block';
+
+                        // Re-enable submit button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = "SUBMIT";
+
+                        // Re-open the modal so the guest can correct their entry
+                        keyModal.showModal();
                 }
             })
             .catch(error => {
-                alert('Error: ' + error.message);
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = "Submit";
+               submitBtn.removeAttribute('aria-busy');
+               submitBtn.disabled = false;
+               submitBtn.innerHTML = "SUBMIT";
+               formErrorMessage.style.display = 'block';
+               formErrorMessage.innerText = "Connection error. Please try again in a moment.";
             });
     });
 </script>
