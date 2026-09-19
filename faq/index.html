@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pico-font-family: 'Inria Serif', serif;
+      --pico-primary: #8b7e74;
+      --pico-primary-hover: #73675e;
+      --pico-border-radius: 6px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Inria Serif', serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    body {
+      background-image: url('../media/IMG_9743.PNG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #f7f5f0;
+      min-height: 100vh;
+      padding: 1rem 0;
+    }
+
+    article {
+      max-width: 620px;
+      margin: 2rem auto;
+      padding: 2.5rem 2rem;
+      background-color: rgba(255, 255, 255, 0.93);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      border-radius: 12px;
+    }
+
+    details {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0.5rem 0;
+    }
+
+    summary {
+      font-weight: 700;
+      color: #333333;
+      cursor: pointer;
+    }
+
+    details p {
+      margin-top: 0.5rem;
+      color: #555555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .back-nav {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: #7a6e65;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .back-nav:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<main class="container">
+  <article>
+    <a href="index.html" class="back-nav">&larr; Back to Home</a>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <!-- FAQ ITEM TEMPLATE -->
+    <details>
+      <summary>Can I bring a plus one?</summary>
+      <p>Due to capacity limits at our venue, we are only able to accommodate guests explicitly listed on your invitation.</p>
+    </details>
+
+    <details>
+      <summary>Is there parking available at the venue?</summary>
+      <p>Yes, complimentary guest parking is available on-site. Follow the signage upon arrival.</p>
+    </details>
+
+    <details>
+      <summary>By when should I submit my RSVP?</summary>
+      <p>Please kindly submit your RSVP through the website by March 1st 2027.</p>
+    </details>
+    <!-- END FAQ ITEMS -->
+
+  </article>
+</main>
+
+</body>
+</html>

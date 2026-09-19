@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Wedding</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pico-font-family: 'Inria Serif', serif;
+      --pico-primary: #8b7e74;
+      --pico-primary-hover: #73675e;
+      --pico-border-radius: 6px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Inria Serif', serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    body {
+      background-image: url('../media/IMG_9743.PNG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #f7f5f0;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* Centering wrapper */
+    main.container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+    }
+
+    article {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      background-color: rgba(255, 255, 255, 0.93);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: #666666;
+      margin-bottom: 2rem;
+    }
+
+    /* Forces stacked vertical layout */
+    .nav-buttons {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1rem;
+      margin-top: 2rem;
+      width: 100%;
+    }
+
+    /* Override Pico's default anchor link styling completely */
+    .nav-buttons a.btn-link {
+      display: block !important;
+      width: 100% !important;
+      background-color: #7a6e65;
+      color: #ffffff !important;
+      border: 1px solid #7a6e65;
+      font-family: 'Inria Serif', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none !important;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .nav-buttons a.btn-link:hover {
+      background-color: #5c524b;
+      border-color: #5c524b;
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body>
+
+<main class="container">
+  <article>
+    <h1>Welcome</h1>
+    <p class="subtitle">We can't wait to celebrate with you!</p>
+
+    <div class="nav-buttons">
+      <a href="rsvp" class="btn-link">RSVP Now</a>
+      <a href="faq" class="btn-link">Guest Info & FAQ</a>
+    </div>
+  </article>
+</main>
+
+</body>
+</html>
