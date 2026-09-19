@@ -1,0 +1,218 @@
+:root {
+    --pico-font-family: 'Inria Serif', serif;
+    --pico-primary: #8b7e74;
+    --pico-primary-hover: #73675e;
+    --pico-border-radius: 6px;
+}
+
+h1, h2, h3 {
+    font-family: 'Inria Serif', serif;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-align: center;
+}
+
+body {
+    /* Path is relative to css/styles.css, so step up to root then into media/ */
+    background-image: url('../media/IMG_9743.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f7f5f0;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Centering container for all cards */
+main.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+/* Base Card Styling */
+article {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    background-color: rgba(255, 255, 255, 0.93);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.subtitle {
+    font-style: italic;
+    color: #666666;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.nav-buttons a.btn-link,
+a.btn-link {
+    display: block !important;
+    width: 100% !important;
+    background-color: #7a6e65;
+    color: #ffffff !important;
+    border: 1px solid #7a6e65;
+    font-family: 'Inria Serif', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.nav-buttons a.btn-link:hover,
+a.btn-link:hover {
+    background-color: #5c524b;
+    border-color: #5c524b;
+    color: #ffffff !important;
+}
+
+/* Back Navigation Link */
+.back-nav {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #7a6e65;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.back-nav:hover {
+    text-decoration: underline;
+}
+
+/* FAQ Accordion Details */
+details {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.5rem 0;
+}
+
+summary {
+    font-weight: 700;
+    color: #333333;
+    cursor: pointer;
+}
+
+details p {
+    margin-top: 0.5rem;
+    color: #555555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Conditional RSVP Field Animations */
+#additionalFields {
+  transition: all 0.3s ease-in-out;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: #333333;
+}
+
+label small {
+    display: block;
+    color: #666666;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-top: 0.1rem;
+    margin-bottom: 0.4rem;
+}
+
+input[type="text"],
+select,
+textarea {
+    font-family: 'Inria Serif', serif;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Submit Button Styling --- */
+form button[type="submit"] {
+    display: block;
+    width: 100%;
+    background-color: #7a6e65;
+    color: #ffffff;
+    border: 1px solid #7a6e65;
+    font-family: 'Inria Serif', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+form button[type="submit"]:hover {
+    background-color: #5c524b;
+    border-color: #5c524b;
+    color: #ffffff;
+}
+
+/* --- Loading Spinner & Busy State --- */
+button[aria-busy="true"] {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+/* --- Access Control Dialog / Modal --- */
+dialog {
+    border-radius: 8px;
+    padding: 2rem;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+}
+
+dialog article {
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+/* --- Inline Error Banners --- */
+#formErrorMessage,
+#modalError {
+    background-color: #fce4e4;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
